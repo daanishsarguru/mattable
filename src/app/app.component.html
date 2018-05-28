@@ -1,0 +1,173 @@
+<!-- <table datatable class="row-border hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Foo</td>
+            <td>Bar</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Someone</td>
+            <td>Youknow</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Iamout</td>
+            <td>Ofinspiration</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Yoda</td>
+            <td>Skywalker</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Patrick</td>
+            <td>Dupont</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Barack</td>
+            <td>Obama</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>François</td>
+            <td>Holland</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Michel</td>
+            <td>Popo</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Chuck</td>
+            <td>Norris</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Simon</td>
+            <td>Robin</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Louis</td>
+            <td>Lin</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Zelda</td>
+            <td>Link</td>
+        </tr>
+    </tbody>
+</table> -->
+
+<ul>
+    <li (click)="showTable(0)">table1</li>
+    <li (click)="showTable(1)">table2</li>
+    <li (click)="showTable(2)">table3</li>
+</ul>
+
+<!--Friends table -->
+<div class="example-container mat-elevation-z8" *ngIf="tableArray[0]">
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFriendsFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="friendsdataSource" matSort>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dept">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dept}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="friendsdisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: friendsdisplayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<!--Students table -->
+<div class="example-container mat-elevation-z8" *ngIf="tableArray[1]">
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyStudentsFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="studentsdataSource" matSort>
+
+        <ng-container matColumnDef="rollno">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Roll No </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.rollno}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="marks">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Marks </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.marks}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="studentsdisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: studentsdisplayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<!--Bike Table-->
+<div class="example-container mat-elevation-z8" *ngIf="tableArray[2]">
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyBikeFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="bikedataSource" matSort>
+
+        <ng-container matColumnDef="srNo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Sr No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.srNo}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="bikeName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Bike Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.bikeName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="engine">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Engine </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.engine}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="bikedisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: bikedisplayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
